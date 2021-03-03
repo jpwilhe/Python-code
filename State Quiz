@@ -1,0 +1,138 @@
+#File: 2252_Wilhelm_L06_Individual.py
+#Name: Jeffrey Wilhelm
+#Auther: Jeffrey Wilhelm
+#Date:7-30-19
+#Purpose: State Quiz!
+
+import random
+wrong_answers=[]
+total_count = 0
+right_count = 0
+wrong_count = 0
+State_Lib = dict()
+State_Lib = {"Alabama": "AL",
+             "Alaska": "AK",
+             "Arizona": "AZ",
+             "Arkansas": "AR",
+             "California": "CA",
+             "Colorado": "CO",
+             "Connecticut": "CT",
+             "Delaware": "DE",
+             "Florida": "FL",
+             "Georgia": "GA",
+             "Hawaii": "HI",
+             "Idaho": "ID",
+             "Illinois": "IL",
+             "Indiana": "IN",
+             "Iowa": "IA",
+             "Kansas": "KS",
+             "Kentucky": "KY",
+             "Louisiana": "LA",
+             "Maine": "ME",
+             "Maryland": "MD",
+             "Massachusetts": "MA",
+             "Michigan": "MI",
+             "Minnesota": "MN",
+             "Mississippi": "MS",
+             "Missouri": "MO",
+             "Montana": "MT",
+             "Nebraska": "NE",
+             "Nevada": "NV",
+             "New Hampshire": "NH",
+             "New Jersey": "NJ",
+             "New Mexico": "NM",
+             "New York": "NY",
+             "North Carolina": "NC",
+             "North Dakota": "ND",
+             "Ohio": "OH",
+             "Oklahoma": "OK",
+             "Oregon": "OR",
+             "Pennsylvania": "PA",
+             "Rhode Island": "RI",
+             "South Carolina": "SC",
+             "South Dakota": "SD",
+             "Tennessee": "TN",
+             "Texas": "TX",
+             "Utah": "UT",
+             "Vermont": "VT",
+             "Virginia": "VA",
+             "Washington": "WA",
+             "West Virginia": "WV",
+             "Wisconsin": "WI",
+             "Wyoming": "WY"}
+#print(State_Lib)
+State_Tuple = list(State_Lib.items())
+#print(State_Tuple)
+
+
+
+def Program():
+    State_Tuple = tuple()
+    State_Lib = dict()
+
+    user_in = str(input('Would you like to play the state quiz game?: [yes or no]'))
+    if user_in == "yes" or user_in == "y" or user_in == "Y" or user_in == "YES":
+        print("Ecellent!")
+        quiz()
+    elif user_in == "no" or user_in == "n" or user_in == "N" or user_in == "NO":
+        print("Sorry to hear that, maybe next time!")
+    else:
+        print("I don't understand. Good-Bye")      
+            
+    
+def quiz():
+    global right_count
+    global wrong_count
+    Abbreviation=list(State_Lib.keys())
+    #States = list(State_Lib.keys())
+    question = (random.choice(Abbreviation)) 
+    answer = State_Lib.get(question)
+    print(question)
+    print(answer)
+    print("What is the abbreviation associated with ", question, "?")
+    user_in = str(input())
+    
+    
+    user_in = user_in.upper()
+    answer = answer.upper()
+
+    if answer == user_in:
+        print("That is the right answer!")
+        right_count += 1
+    else:
+        print("That answer is wrong.")
+        print("The correct answer is ", answer)
+        wrong_count += 1
+        wrong_answers.append(answer)
+    play_again()
+    
+
+def incorrect():
+    if wrong_answers:
+        print("These are the abbreviations you got wrong.")
+        for each in wrong_answers:
+            print(each)
+
+def tally():
+    global right_count
+    global wrong_count
+    total_count = right_count + wrong_count
+    print("=" * 40)
+    print("total count - right count - wrong count")
+    print("=" * 40)
+    print(total_count, (" " *14), right_count, (" " *14), wrong_count)
+    print("=" * 40)
+    
+def play_again():
+    play_again=input("Do you want another abbreviation? [yes or no]: ")
+    if play_again == "yes" or play_again == "y" or play_again == "Y" or play_again == "YES":
+        quiz()
+    else:
+        tally()
+        incorrect()
+        print("Thanks for playing, bye!")
+
+
+
+
+Program()
